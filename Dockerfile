@@ -1,4 +1,4 @@
-ARG WACLI_IMAGE=ghcr.io/hosmelq/railway-wacli-template:latest@sha256:870fe444468468e82413f501fe3f561111d866c7007daeab6ee8053d23783328
+ARG WACLI_IMAGE=ghcr.io/hosmelq/railway-wacli-template:latest@sha256:3397d18cb7991da17093243f6aa4f1841d6065bb27d9a42d93408ca7682a8112
 FROM ${WACLI_IMAGE}
 
 LABEL org.opencontainers.image.description="wacli with a FastAPI HTTP API and persistent WhatsApp sessions for Railway" \
