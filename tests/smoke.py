@@ -148,6 +148,7 @@ try:
         "-c",
         "printf persisted > /data/store/persistence.txt",
     )
+    docker("exec", name, "touch", "/data/store/root-owned")
     docker("stop", "--time", "10", name)
     containers.remove(name)
 
@@ -156,6 +157,12 @@ try:
     assert request(base, "/session", replacement)[0] == 200
     assert (
         docker("exec", name, "cat", "/data/store/persistence.txt").stdout == "persisted"
+    )
+    assert (
+        docker(
+            "exec", name, "stat", "-c", "%u:%g", "/data/store/root-owned"
+        ).stdout.strip()
+        == "10001:10001"
     )
 
     # Replace only the disposable test container's CLI to verify the HTTP adapter.

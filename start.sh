@@ -4,6 +4,7 @@ umask 077
 
 if [ "$(id -u)" = 0 ]; then
   install -d -o wacli -g wacli -m 700 /data "$WACLI_STORE_DIR" "$XDG_CACHE_HOME" "$XDG_CONFIG_HOME" "$XDG_STATE_HOME"
+  chown -R wacli:wacli /data
   exec gosu wacli "$0" "$@"
 fi
 
